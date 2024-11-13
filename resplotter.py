@@ -1,3 +1,6 @@
+#This file written by M. Nouman is part of the General DFT Descriptors project
+#which is released under the MIT license. See LICENSE file for full license details.
+
 import torch
 from matplotlib import pyplot as plt
 from matplotlib import cm
