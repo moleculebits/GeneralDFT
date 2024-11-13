@@ -23,5 +23,5 @@ pip install -r requirements.txt
 ```
 -Again, make sure you download the appropriate version of PyTorch.
 
--After that, you can go to Zenodo and download the embeddings. Modify the paths according to where you decide to install the embeddings. After that, all scripts should run smoothly provided you first train/test a model before trying to plot results.
+-After that, you can go to Zenodo and download the embeddings. Modify the paths according to where you decided to install the embeddings. After that, all scripts should run smoothly provided you first train/test a model before trying to plot results.
 
