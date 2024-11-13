@@ -1,5 +1,5 @@
 # GeneralDFT
-Source code to complement the paper "General Chemically Intuitive Atom- and Bond-level DFT Descriptors for Machine Learning Approaches to Reaction Condition Prediction ".
+Source code to complement the paper "General Chemically Intuitive Atom- and Bond-level DFT Descriptors for Machine Learning Approaches to Reaction Condition Prediction ". All results described in the paper should be reproducible using the scripts shown here and the embeddings available on Zenodo.
 
 # Installation
 
