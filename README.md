@@ -8,12 +8,12 @@ Source code to complement the paper "General Chemically Intuitive Atom- and Bond
 ```
 git clone https://github.com/moleculebits/GeneralDFT.git
 ```
--go to the main directory:
+-Go to the main directory:
 
 ```
 cd GeneralDFT
 ```
--make sure you satify all the requirements in the requirements.txt file. The range of module versions you can use should be fairly flexible, but do confirm that the PyTorch version
+-Make sure you satify all the requirements in the requirements.txt file. The range of module versions you can use should be fairly flexible, but do confirm that the PyTorch version
 you have installed corresponds to the GPU/CPU you have in your system.
 
 -If you want to test the files in a blank virtual environment, for instance a conda environemnt, you can install Python 3.10 and then use pip to download the requirements:
