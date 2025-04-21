@@ -7,8 +7,8 @@ import numpy as np
 from torch.utils.data import Dataset
 
 class EmbDataset(Dataset):
-    def __init__(self, valsize=0, testsize=0, train=True, test=False,  rand=True):
-        self.embpath   = 'gl2inputembs500.pt'
+    def __init__(self, path, valsize=0, testsize=0, train=True, test=False,  rand=True):
+        self.embpath   = path
         self.tuplelist = torch.load(self.embpath)
         if rand == True:
             random.seed(42)
@@ -17,9 +17,9 @@ class EmbDataset(Dataset):
             self.tuplelist = self.tuplelist[valsize+testsize:]
         elif test == False and train == False:
             self.tuplelist = self.tuplelist[0:valsize]
-        elif train == True:
+        elif train == True: #and test false
             self.tuplelist = self.tuplelist[valsize:]
-        else:
+        else: #train false test true
             self.tuplelist = self.tuplelist[valsize:testsize+valsize]
 
     def __len__(self):

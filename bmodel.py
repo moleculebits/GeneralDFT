@@ -1,41 +1,63 @@
 #This file written by M. Nouman is part of the General DFT Descriptors project
 #which is released under the MIT license. See LICENSE file for full license details.
-
 import torch
 import numpy as np
-import pickle
+import argparse
 import dataset
 from sklearn import preprocessing as sk
-from torch.utils.data import DataLoader, WeightedRandomSampler
+from torch.utils.data import DataLoader, WeightedRandomSampler, ConcatDataset
+
+#improves performance
+from sklearnex import patch_sklearn
+patch_sklearn()
 
 device = torch.device('cuda'if torch.cuda.is_available() else 'cpu')
 print(device)
-
-torch.manual_seed(42)
+torch.manual_seed(21)
 DROPOUT = 0.25
 
+parser = argparse.ArgumentParser()
+parser.add_argument('-p', dest='path', type=str, help='specifies path to embedding')
+parser.add_argument('-s', dest='size', type=int, help='specifies size of embedding')
+parser.add_argument('-t', dest='type', type=str, help='specifies type of embedding')
+args = parser.parse_args()
+
+if args.size==1000:
+    weights = [3, 3, 2, 2]
+elif args.size==1200:
+    weights = [4, 3, 2, 2]
+elif args.size==2000:
+    weights = [6, 5, 4, 2]
+elif args.size==2400:
+    weights = [8, 6, 4, 2]
+elif args.size in (3400, 3600, 4000):
+    weights = [11, 9, 7, 4]
+else: 
+    weigths = []
+
+
 class BNET(torch.nn.Module):
-    def __init__(self, in_channels, out_channels):
+    def __init__(self, layerweigths, in_channels, out_channels):
         super().__init__()
         torch.set_default_dtype(torch.float32)
         self.fnn = torch.nn.Sequential(#Change the number of neurons according to the paper to reproduce the results obtained
-            torch.nn.Linear(in_channels, 8*out_channels),
+            torch.nn.Linear(in_channels, layerweigths[0]*out_channels),
             torch.nn.LeakyReLU(),
-            torch.nn.BatchNorm1d(8*out_channels),
+            torch.nn.BatchNorm1d(layerweigths[0]*out_channels),
             torch.nn.Dropout(DROPOUT),
-            torch.nn.Linear(8*out_channels, 6*out_channels),
+            torch.nn.Linear(layerweigths[0]*out_channels, layerweigths[1]*out_channels),
             torch.nn.LeakyReLU(),
-            torch.nn.BatchNorm1d(6*out_channels),
+            torch.nn.BatchNorm1d(layerweigths[1]*out_channels),
             torch.nn.Dropout(DROPOUT),
-            torch.nn.Linear(6*out_channels,4*out_channels),
+            torch.nn.Linear(layerweigths[1]*out_channels,layerweigths[2]*out_channels),
             torch.nn.LeakyReLU(),
-            torch.nn.BatchNorm1d(4*out_channels),
+            torch.nn.BatchNorm1d(layerweigths[2]*out_channels),
             torch.nn.Dropout(DROPOUT),
-            torch.nn.Linear(4*out_channels, 2*out_channels),
+            torch.nn.Linear(layerweigths[2]*out_channels, layerweigths[3]*out_channels),
             torch.nn.LeakyReLU(),
-            torch.nn.BatchNorm1d(2*out_channels),
+            torch.nn.BatchNorm1d(layerweigths[3]*out_channels),
             torch.nn.Dropout(DROPOUT),
-            torch.nn.Linear(2*out_channels, out_channels),
+            torch.nn.Linear(layerweigths[3]*out_channels, out_channels),
         )
 
     def forward(self, fp):
@@ -43,6 +65,12 @@ class BNET(torch.nn.Module):
         #feed forward for class prediction
         x = self.fnn(x)
         return x
+    
+def weight_reset(m):
+    reset_parameters = getattr(m, "reset_parameters", None)
+    if callable(reset_parameters):
+        m.reset_parameters()
+
 
 def top_correct(labels, predicted, k):
     _, topk   = torch.topk(predicted, k, 1)
@@ -60,71 +88,68 @@ def top_correct(labels, predicted, k):
 
 if __name__ == '__main__':
 
-    VALSIZE   = 6000
-    TESTSIZE  = 6000
+    VALSIZE   = 6993
+    TESTSIZE  = 6993
     BATCHSIZE = 48
 
     LR = 0.001
     EPOCHS = 300
 
     #saving model information
+    folder  = './test/'
+    EMBPATH        = args.path
+    HRES_OUT       = args.type+f'test48-{args.size}.txt'           #val loss and test accuracies
+    TESTLABS       = args.type+f'testlabs48-{args.size}.pt'        #test prediction and ground truth labels (redundant to prevent data-loss in case of model corruption)
+    TRAINING_OUT   = args.type+f'train48-{args.size}.csv'        #training and validation loss
+    TEST_REACTS    = args.type+f'testreacts48-{args.size}.txt'   #test reaction SMILES + predictions
+    TRAIN_REACTS   = args.type+f'trreacts48-{args.size}.txt'     #train reaction SMILES + predictions
+    INLAYER        = args.type+f'inlayer48-{args.size}.pt'         #input layer weights
+    OUTLAYER       = args.type+f'outlayer48-{args.size}.pt'        #output layer weights
 
-    HRES_OUT       = 'molgl2htest48-3400.txt'           #test set accuracies
-    TESTLABS       = 'mol2gl2htestlabs48-3400.pt'       #test prediction and ground truth labels (redundant to prevent data-loss in case of model corruption)
-    TRAINING_OUT   = 'molgl2htrainres48-3400.csv'       #training and validation loss
-    TEST_REACTS    = 'molgl2htestreacts48-3400.txt'     #test reaction SMILES + predictions
-    TRAIN_REACTS   = 'molgl2htrainreacts48-3400.txt'    #train reaction SMILES + predictions
-    INLAYER       = 'molgl2hinlayer48-3400.pt'          #input layer weights
-    OUTLAYER       = 'molgl2houtlayer48-3400.pt'        #output layer weights
-    ONEHOT         = 'onehoth3400.pkl'                  #one-hot model
+    BEST_STATE     = args.type+f'beststate48-{args.size}.pt'      #best model state 
+    LAST_STATE     = args.type+f'laststate48-{args.size}.pt'      #last model state
 
-    BEST_STATE     = 'mol2gl2hbeststate48-3400.pt'      #best model state 
-    LAST_STATE     = 'mol2gl2hlaststate48-3400.pt'      #last model state
-
-    trainingset   = dataset.EmbDataset(VALSIZE, TESTSIZE, train=True, test=True)
-    validationset = dataset.EmbDataset(VALSIZE, TESTSIZE, train=False, test=True)
-    testset       = dataset.EmbDataset(VALSIZE, TESTSIZE, train=False, test=False)
-
+    trainingset   = dataset.EmbDataset(EMBPATH, VALSIZE, TESTSIZE, train=True, test=True)
+    validationset = dataset.EmbDataset(EMBPATH, VALSIZE, TESTSIZE, train=False, test=False)
+    testset       = dataset.EmbDataset(EMBPATH, VALSIZE, TESTSIZE, train=False, test=True)
     print(len(trainingset))
 
     labels = []
-    for emb, label, smarts in trainingset:
+    embs   = []
+    dset = ConcatDataset((trainingset, validationset, testset)) #used later for cross validation
+    print(len(trainingset))
+    print(len(dset))
+    for emb, label, smarts in dset:
+        embs.append(emb.reshape(-1,).numpy())
         labels.append(label)
 
-    nplabels = np.asarray(labels)
-    classes, class_sample_count = np.unique(labels, return_counts=True)
-    weight = 1.0/class_sample_count
-    indices = np.array([np.where(classes == nplabels[i])[0] for i in range(0, nplabels.size)]).reshape(-1,)
-    sample_weights = np.array([weight[idx] for idx in indices])
-
-    sampler = WeightedRandomSampler(torch.from_numpy(sample_weights), len(trainingset), replacement=True)
-    weight = torch.from_numpy(weight)
-
-    for emb, label, smarts in (*validationset, *testset):
-        labels.append(label)
-
-    nplabels = np.array(labels)
-    classes, class_sample_count = np.unique(nplabels, return_counts=True)
-    class_weights = 1.0/class_sample_count
     le = sk.OneHotEncoder(handle_unknown='ignore')
-    nplabels = le.fit_transform(nplabels.reshape(-1, 1)).toarray()
-
-    with open(ONEHOT, 'wb') as handle:
-        pickle.dump(le, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    npembs   = np.vstack(embs)
+    labels   = np.asarray(labels)
+    classes, class_sample_count = np.unique(labels, return_counts=True)
+    nplabels = le.fit_transform(labels.reshape(-1, 1)).toarray()
     
-    trainingloader   = DataLoader(trainingset, BATCHSIZE, collate_fn=dataset.EmbDataset.collate_fun, sampler=sampler, drop_last=True)
-    validationloader = DataLoader(validationset,  1000, collate_fn=dataset.EmbDataset.collate_fun)
-    testloader       = DataLoader(testset,  1000, collate_fn=dataset.EmbDataset.collate_fun)
-
-    sampleemb = trainingset[0][0]
-    model = BNET(sampleemb.size(dim=1), int(np.shape(nplabels)[1]))
+    model = BNET(weights, int(np.shape(npembs)[1]), int(np.shape(nplabels)[1]))
     model.to(device)
-    print(sampleemb.size(dim=1), int(np.shape(nplabels)[1]))
+    print(np.shape(npembs)[1], int(np.shape(nplabels)[1]))
+
+    trlabs = []
+    for emb, label, smarts in trainingset:
+        trlabs.append(label)
+    trlabs = np.asarray(trlabs)
+    trclasses, trclass_sample_count = np.unique(trlabs, return_counts=True)
+    trweight = 1.0/trclass_sample_count
+    trindices = np.array([np.where(trclasses == trlabs[i])[0] for i in range(0, trlabs.size)]).reshape(-1,)
+    sample_weights = np.array([trweight[idx] for idx in trindices])
+    sampler = WeightedRandomSampler(torch.from_numpy(sample_weights), len(trainingset), replacement=True)
+
+    trainingloader   = DataLoader(trainingset, BATCHSIZE, collate_fn=dataset.EmbDataset.collate_fun, sampler=sampler, drop_last=False)
+    validationloader = DataLoader(validationset,  1000, collate_fn=dataset.EmbDataset.collate_fun, drop_last=False)
+    testingloader    = DataLoader(testset,  1000, collate_fn=dataset.EmbDataset.collate_fun, drop_last=False)
 
     optimizer = torch.optim.SGD(model.parameters(), lr=LR, weight_decay=1e-5, momentum=0.9)
     loss_fun  = torch.nn.CrossEntropyLoss()
-    scheduler1 = torch.optim.lr_scheduler.ExponentialLR(optimizer, 0.9)
-    scheduler2 = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, 30)
+    scheduler1 = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, 30, T_mult=11)
 
     def train_epoch():
         running_loss = 0
@@ -172,7 +197,7 @@ if __name__ == '__main__':
                     last_loss    = running_loss/(accum_iter)
                     print(f'batch: {idx+1} last_loss: {last_loss} top1accuracy: {top1ac:.4f}, top3accuracy: {topkac}')
                     running_loss = 0
-            with open(TRAIN_REACTS, 'w') as fout:
+            with open(folder+TRAIN_REACTS, 'w') as fout:
                 for idx, (smarts, predlab, truelab) in enumerate(zip(rxnsmiles, predlabs, truelabs)):
                     fout.write(smarts + f' predicted: {predlab} gtruth: {truelab} \n')
 
@@ -196,19 +221,18 @@ if __name__ == '__main__':
 
             avg_vloss = running_vloss/(idx+1)
             scheduler1.step()
-            scheduler2.step(avg_loss)
-        with open(HRES_OUT, 'a') as trout:
-            with open(TRAINING_OUT, 'a') as csvout:
+        with open(folder+HRES_OUT, 'a') as trout:
+            with open(folder+TRAINING_OUT, 'a') as csvout:
                 csvout.write(f'{avg_loss}, {avg_vloss} \n')
                 trout.write('epoch: {}  train: {} valid: {} ratio: {} \n'.format(epochidx+1, avg_loss, avg_vloss, avg_vloss/avg_loss))
 
         if avg_vloss < best_vloss:
             best_vloss = avg_vloss
             bestflag = 1
-            torch.save(model.state_dict(), BEST_STATE)
+            torch.save(model.state_dict(), folder+BEST_STATE)
         else:
             bestflag = 0
-            torch.save(model.state_dict(), LAST_STATE)
+            torch.save(model.state_dict(), folder+LAST_STATE)
         epochidx += 1
 
         with torch.no_grad():
@@ -222,7 +246,7 @@ if __name__ == '__main__':
             tlastlayer  = []
             tinputlayer = []
 
-            for idx, tdata in enumerate(testloader):
+            for idx, tdata in enumerate(testingloader):
                 tinputs, tlabels, smarts = tdata
                 toutputs = model(tinputs.to(device))
 
@@ -247,12 +271,12 @@ if __name__ == '__main__':
         if bestflag == 1:
             tinputlayer = np.concatenate(tinputlayer, axis=0)
             tlastlayer  = np.concatenate(tlastlayer, axis=0)
-            torch.save(tinputlayer, INLAYER)
-            torch.save(tlastlayer, OUTLAYER)
-            torch.save((classes, ttruelabs, tpredlabs), TESTLABS)
-            with open(TEST_REACTS, 'w') as fout:
+            torch.save(tinputlayer, folder+INLAYER)
+            torch.save(tlastlayer, folder+OUTLAYER)
+            torch.save((classes, ttruelabs, tpredlabs), folder+TESTLABS)
+            with open(folder+TEST_REACTS, 'w') as fout:
                 for idx, (smarts, predlab, truelab) in enumerate(zip(trxnsmiles, tpredlabs, ttruelabs)):
                     fout.write(smarts + f' predicted: {predlab} gtruth: {truelab} \n')
-        with open(HRES_OUT, 'a') as trout:
+        with open(folder+HRES_OUT, 'a') as trout:
             trout.write(f'test top1 accuracy: {top1ac} test top3 accuracy: {topkac}\n')
 
