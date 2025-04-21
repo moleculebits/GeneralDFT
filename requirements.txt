@@ -1,0 +1,6 @@
+#notice that the version of PyTorch you should install depends on the GPU you're using. We tested the modules and scripts in python 3.10
+--extra-index-url https://download.pytorch.org/whl/cu124
+matplotlib==3.9.2
+numpy==2.0.2
+scikit-learn==1.5.2
+torch==2.4.1+cu124
