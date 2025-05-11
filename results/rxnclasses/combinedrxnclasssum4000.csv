@@ -1,0 +1,64 @@
+reaction_classes,accuracy,total_samples
+Acid to acid chloride,0.392 ± 0.031,385.0
+Alcohol to acid oxidation,0.124 ± 0.141,26.0
+Alcohol to halide,0.534 ± 0.034,982.0
+Alkene Oxidations,0.423 ± 0.175,79.0
+Alkene oxidative cleavage,0.586 ± 0.081,330.0
+Alkene to alkane,0.667 ± 0.046,599.0
+Alkyne to alkane,0.467 ± 0.398,20.0
+Amide formation,0.473 ± 0.018,13120.0
+Amide to amine reduction,0.344 ± 0.109,109.0
+Amidine formation,0.559 ± 0.111,276.0
+Aromatic C-C bond formation,0.426 ± 0.066,490.0
+Carbamate/carbonate formation,0.531 ± 0.097,298.0
+Cyano or imine to amine,0.430 ± 0.089,123.0
+Dehydration,0.450 ± 0.050,1032.0
+Ester to alcohol reduction,0.419 ± 0.057,171.0
+Grignard reaction,0.062 ± 0.199,10.0
+Halogenation,0.476 ± 0.044,630.0
+Heck reaction,0.350 ± 0.361,16.0
+Heteroaryl N-alkylation,0.439 ± 0.064,948.0
+Ketone to alcohol reduction,0.529 ± 0.048,249.0
+Ketone/Aldehyde deprotection,0.533 ± 0.047,800.0
+Ketone/Aldehyde protection,0.794 ± 0.046,566.0
+N-Alkylation with Alk-X,0.287 ± 0.089,169.0
+N-acylation to urea,0.473 ± 0.052,1214.0
+N-arylation with Ar-X,0.553 ± 0.031,4187.0
+N-heterocycle synthesis,0.506 ± 0.031,2287.0
+N-sulfonylation,0.458 ± 0.035,2243.0
+NH deprotections,0.578 ± 0.043,4387.0
+NH protections,0.498 ± 0.020,2041.0
+Nitration,0.623 ± 0.019,583.0
+Nitrile to Acid,0.503 ± 0.132,186.0
+Nitro to amine reduction,0.517 ± 0.070,355.0
+O-acylation to ester,0.433 ± 0.019,3640.0
+O-heterocycle synthesis,0.540 ± 0.049,1511.0
+O-substitution,0.522 ± 0.025,6305.0
+O-sulfonylation,0.431 ± 0.068,1797.0
+Other,0.410 ± 0.403,35.0
+Other C-C bond formation,0.555 ± 0.037,2712.0
+Other Organometallic C-C bond formation,0.524 ± 0.049,803.0
+Other Oxidations,0.429 ± 0.098,169.0
+Other functional group addition,0.346 ± 0.031,903.0
+Other functional group interconversion,0.457 ± 0.021,4516.0
+Other reductions,0.436 ± 0.081,453.0
+Oxidations at nitrogen,0.530 ± 0.145,133.0
+Oxidations at sulfur,0.601 ± 0.072,502.0
+Oxidations to carbonyls,0.328 ± 0.076,598.0
+Palladium catalyzed reaction,0.500 ± 6.353,4.0
+RCO2H deprotections,0.569 ± 0.037,996.0
+RCO2H protections,0.365 ± 0.131,78.0
+ROH deprotections,0.526 ± 0.056,1059.0
+ROH protections,0.448 ± 0.039,710.0
+Reductive amination and amine coupling,0.508 ± 0.013,2770.0
+S deprotections,0.501 ± 0.163,62.0
+S-heterocycle synthesis,0.394 ± 0.113,251.0
+S-substitution,0.455 ± 0.059,400.0
+Salt formation,0.284 ± 0.174,82.0
+Sonogashira reaction,0.795 ± 0.153,43.0
+Stille reaction,1.000 ± 0.000,2.0
+Sulfonation,0.428 ± 0.113,115.0
+Suzuki coupling,0.553 ± 0.449,20.0
+Thioester and phosphonate ester formation,0.446 ± 0.028,226.0
+Wittig olefination,0.339 ± 0.114,129.0
+macro avg,0.474 ± 0.024,
