@@ -1,0 +1,60 @@
+        ############ FOLD0 #############        
+        
+CCOC(=O)CC(=O)c1c(C(=O)OC)n(C)c2cc(Cl)ccc12.CNC>>COC(=O)c1c(C(=O)CC(=O)N(C)C)c2ccc(Cl)cc2n1C predicted: ['O=C(c1ncc[nH]1)c1ncc[nH]1'] gtruth: ['CN(C)c1ccncc1'] 
+Cc1cc(=O)n(CC2OCCO2)c2cc(OC3CC3)ccc12>>Cc1cc(=O)n(CC=O)c2cc(OC3CC3)ccc12 predicted: ['N#CC1=C(C#N)C(=O)C(Cl)=C(Cl)C1=O'] gtruth: ['O=C(O)C(F)(F)F'] 
+CC(C)(C)c1cc(NC(=O)[C@@H]2CCCN2)no1.O=S(=O)(Cl)c1ccc(Cl)cc1>>CC(C)(C)c1cc(NC(=O)[C@@H]2CCCN2S(=O)(=O)c2ccc(Cl)cc2)no1 predicted: ['Cc1nn(C)c(C)c1S(=O)(=O)N1CCC(Oc2ccc(Cl)c(Cl)c2)CC1'] gtruth: ['Cl'] 
+CC(C)N.O=C1c2ccccc2C(=O)c2c1cccc2[N+](=O)[O-]>>CC(C)Nc1cccc2c1C(=O)c1ccccc1C2=O predicted: ['CCN'] gtruth: ['c1ccncc1'] 
+C(#CC1c2ccccc2C=Cc2ccccc21)COC1CCCCO1>>OCC#CC1c2ccccc2C=Cc2ccccc21 predicted: ['O=C1C(Cl)=C(Cl)C(=O)C(Cl)=C1Cl'] gtruth: ['Cl'] 
+CN1CCC2(CC1)NCCO2>>CC(=O)c1ccc(S(=O)(=O)N2CCOC23CCN(C)CC3)cc1 predicted: ['CS(=O)(=O)OS(C)(=O)=O'] gtruth: ['c1ccncc1'] 
+COCCN1C(=O)CCC(N2C(=O)c3cccc(N)c3C2=O)C1=O.CC(=O)OC(C)=O>>COCCN1C(=O)CCC(N2C(=O)c3cccc(NC(C)=O)c3C2=O)C1=O predicted: ['CNN'] gtruth: ['CN(C)c1ccncc1'] 
+O=[N+]([O-])c1cc(F)ccc1N1CCCCC1>>Nc1cc(F)ccc1N1CCCCC1 predicted: ['CN1CCNCC1'] gtruth: ['Cl'] 
+CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.CCOC(=O)CC[C@H](NC(=O)OC(C)(C)C)C(=O)OC(C)(C)C>>CCOC(=O)CC[C@@H](C(=O)OC(C)(C)C)N(C(=O)OC(C)(C)C)C(=O)OC(C)(C)C predicted: ['CCOC(=O)/N=N/C(=O)OCC'] gtruth: ['CN(C)c1ccncc1'] 
+
+        ############ FOLD1 #############        
+        
+CCOC(=O)CC(=O)c1c(C(=O)OC)n(C)c2cc(Cl)ccc12.CNC>>COC(=O)c1c(C(=O)CC(=O)N(C)C)c2ccc(Cl)cc2n1C predicted: ['O=C(c1ncc[nH]1)c1ncc[nH]1'] gtruth: ['CN(C)c1ccncc1'] 
+Cc1cc(=O)n(CC2OCCO2)c2cc(OC3CC3)ccc12>>Cc1cc(=O)n(CC=O)c2cc(OC3CC3)ccc12 predicted: ['N#CC1=C(C#N)C(=O)C(Cl)=C(Cl)C1=O'] gtruth: ['O=C(O)C(F)(F)F'] 
+CC(C)(C)c1cc(NC(=O)[C@@H]2CCCN2)no1.O=S(=O)(Cl)c1ccc(Cl)cc1>>CC(C)(C)c1cc(NC(=O)[C@@H]2CCCN2S(=O)(=O)c2ccc(Cl)cc2)no1 predicted: ['Cc1nn(C)c(C)c1S(=O)(=O)N1CCC(Oc2ccc(Cl)c(Cl)c2)CC1'] gtruth: ['Cl'] 
+CC(C)N.O=C1c2ccccc2C(=O)c2c1cccc2[N+](=O)[O-]>>CC(C)Nc1cccc2c1C(=O)c1ccccc1C2=O predicted: ['CCN'] gtruth: ['c1ccncc1'] 
+C(#CC1c2ccccc2C=Cc2ccccc21)COC1CCCCO1>>OCC#CC1c2ccccc2C=Cc2ccccc21 predicted: ['O=C1C(Cl)=C(Cl)C(=O)C(Cl)=C1Cl'] gtruth: ['Cl'] 
+CN1CCC2(CC1)NCCO2>>CC(=O)c1ccc(S(=O)(=O)N2CCOC23CCN(C)CC3)cc1 predicted: ['CS(=O)(=O)OS(C)(=O)=O'] gtruth: ['c1ccncc1'] 
+COCCN1C(=O)CCC(N2C(=O)c3cccc(N)c3C2=O)C1=O.CC(=O)OC(C)=O>>COCCN1C(=O)CCC(N2C(=O)c3cccc(NC(C)=O)c3C2=O)C1=O predicted: ['CNN'] gtruth: ['CN(C)c1ccncc1'] 
+O=[N+]([O-])c1cc(F)ccc1N1CCCCC1>>Nc1cc(F)ccc1N1CCCCC1 predicted: ['CN1CCNCC1'] gtruth: ['Cl'] 
+CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.CCOC(=O)CC[C@H](NC(=O)OC(C)(C)C)C(=O)OC(C)(C)C>>CCOC(=O)CC[C@@H](C(=O)OC(C)(C)C)N(C(=O)OC(C)(C)C)C(=O)OC(C)(C)C predicted: ['CCOC(=O)/N=N/C(=O)OCC'] gtruth: ['CN(C)c1ccncc1'] 
+
+
+        ############ FOLD2 #############        
+        
+CCOC(=O)CC(=O)c1c(C(=O)OC)n(C)c2cc(Cl)ccc12.CNC>>COC(=O)c1c(C(=O)CC(=O)N(C)C)c2ccc(Cl)cc2n1C predicted: ['O=C(c1ncc[nH]1)c1ncc[nH]1'] gtruth: ['CN(C)c1ccncc1'] 
+Cc1cc(=O)n(CC2OCCO2)c2cc(OC3CC3)ccc12>>Cc1cc(=O)n(CC=O)c2cc(OC3CC3)ccc12 predicted: ['N#CC1=C(C#N)C(=O)C(Cl)=C(Cl)C1=O'] gtruth: ['O=C(O)C(F)(F)F'] 
+CC(C)(C)c1cc(NC(=O)[C@@H]2CCCN2)no1.O=S(=O)(Cl)c1ccc(Cl)cc1>>CC(C)(C)c1cc(NC(=O)[C@@H]2CCCN2S(=O)(=O)c2ccc(Cl)cc2)no1 predicted: ['Cc1nn(C)c(C)c1S(=O)(=O)N1CCC(Oc2ccc(Cl)c(Cl)c2)CC1'] gtruth: ['Cl'] 
+CC(C)N.O=C1c2ccccc2C(=O)c2c1cccc2[N+](=O)[O-]>>CC(C)Nc1cccc2c1C(=O)c1ccccc1C2=O predicted: ['CCN'] gtruth: ['c1ccncc1'] 
+C(#CC1c2ccccc2C=Cc2ccccc21)COC1CCCCO1>>OCC#CC1c2ccccc2C=Cc2ccccc21 predicted: ['O=C1C(Cl)=C(Cl)C(=O)C(Cl)=C1Cl'] gtruth: ['Cl'] 
+CN1CCC2(CC1)NCCO2>>CC(=O)c1ccc(S(=O)(=O)N2CCOC23CCN(C)CC3)cc1 predicted: ['CS(=O)(=O)OS(C)(=O)=O'] gtruth: ['c1ccncc1'] 
+COCCN1C(=O)CCC(N2C(=O)c3cccc(N)c3C2=O)C1=O.CC(=O)OC(C)=O>>COCCN1C(=O)CCC(N2C(=O)c3cccc(NC(C)=O)c3C2=O)C1=O predicted: ['CNN'] gtruth: ['CN(C)c1ccncc1'] 
+O=[N+]([O-])c1cc(F)ccc1N1CCCCC1>>Nc1cc(F)ccc1N1CCCCC1 predicted: ['CN1CCNCC1'] gtruth: ['Cl'] 
+CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.CCOC(=O)CC[C@H](NC(=O)OC(C)(C)C)C(=O)OC(C)(C)C>>CCOC(=O)CC[C@@H](C(=O)OC(C)(C)C)N(C(=O)OC(C)(C)C)C(=O)OC(C)(C)C predicted: ['CCOC(=O)/N=N/C(=O)OCC'] gtruth: ['CN(C)c1ccncc1'] 
+
+        ############ FOLD3 #############        
+        
+CCOC(=O)CC(=O)c1c(C(=O)OC)n(C)c2cc(Cl)ccc12.CNC>>COC(=O)c1c(C(=O)CC(=O)N(C)C)c2ccc(Cl)cc2n1C predicted: ['O=C(c1ncc[nH]1)c1ncc[nH]1'] gtruth: ['CN(C)c1ccncc1'] 
+Cc1cc(=O)n(CC2OCCO2)c2cc(OC3CC3)ccc12>>Cc1cc(=O)n(CC=O)c2cc(OC3CC3)ccc12 predicted: ['N#CC1=C(C#N)C(=O)C(Cl)=C(Cl)C1=O'] gtruth: ['O=C(O)C(F)(F)F'] 
+CC(C)(C)c1cc(NC(=O)[C@@H]2CCCN2)no1.O=S(=O)(Cl)c1ccc(Cl)cc1>>CC(C)(C)c1cc(NC(=O)[C@@H]2CCCN2S(=O)(=O)c2ccc(Cl)cc2)no1 predicted: ['Cc1nn(C)c(C)c1S(=O)(=O)N1CCC(Oc2ccc(Cl)c(Cl)c2)CC1'] gtruth: ['Cl'] 
+CC(C)N.O=C1c2ccccc2C(=O)c2c1cccc2[N+](=O)[O-]>>CC(C)Nc1cccc2c1C(=O)c1ccccc1C2=O predicted: ['CCN'] gtruth: ['c1ccncc1'] 
+C(#CC1c2ccccc2C=Cc2ccccc21)COC1CCCCO1>>OCC#CC1c2ccccc2C=Cc2ccccc21 predicted: ['O=C1C(Cl)=C(Cl)C(=O)C(Cl)=C1Cl'] gtruth: ['Cl'] 
+CN1CCC2(CC1)NCCO2>>CC(=O)c1ccc(S(=O)(=O)N2CCOC23CCN(C)CC3)cc1 predicted: ['CS(=O)(=O)OS(C)(=O)=O'] gtruth: ['c1ccncc1'] 
+COCCN1C(=O)CCC(N2C(=O)c3cccc(N)c3C2=O)C1=O.CC(=O)OC(C)=O>>COCCN1C(=O)CCC(N2C(=O)c3cccc(NC(C)=O)c3C2=O)C1=O predicted: ['CNN'] gtruth: ['CN(C)c1ccncc1'] 
+O=[N+]([O-])c1cc(F)ccc1N1CCCCC1>>Nc1cc(F)ccc1N1CCCCC1 predicted: ['CN1CCNCC1'] gtruth: ['Cl'] 
+CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.CCOC(=O)CC[C@H](NC(=O)OC(C)(C)C)C(=O)OC(C)(C)C>>CCOC(=O)CC[C@@H](C(=O)OC(C)(C)C)N(C(=O)OC(C)(C)C)C(=O)OC(C)(C)C predicted: ['CCOC(=O)/N=N/C(=O)OCC'] gtruth: ['CN(C)c1ccncc1'] 
+
+        ############ FOLD4 #############        
+        
+CCOC(=O)CC(=O)c1c(C(=O)OC)n(C)c2cc(Cl)ccc12.CNC>>COC(=O)c1c(C(=O)CC(=O)N(C)C)c2ccc(Cl)cc2n1C predicted: ['O=C(c1ncc[nH]1)c1ncc[nH]1'] gtruth: ['CN(C)c1ccncc1'] 
+Cc1cc(=O)n(CC2OCCO2)c2cc(OC3CC3)ccc12>>Cc1cc(=O)n(CC=O)c2cc(OC3CC3)ccc12 predicted: ['N#CC1=C(C#N)C(=O)C(Cl)=C(Cl)C1=O'] gtruth: ['O=C(O)C(F)(F)F'] 
+CC(C)(C)c1cc(NC(=O)[C@@H]2CCCN2)no1.O=S(=O)(Cl)c1ccc(Cl)cc1>>CC(C)(C)c1cc(NC(=O)[C@@H]2CCCN2S(=O)(=O)c2ccc(Cl)cc2)no1 predicted: ['Cc1nn(C)c(C)c1S(=O)(=O)N1CCC(Oc2ccc(Cl)c(Cl)c2)CC1'] gtruth: ['Cl'] 
+CC(C)N.O=C1c2ccccc2C(=O)c2c1cccc2[N+](=O)[O-]>>CC(C)Nc1cccc2c1C(=O)c1ccccc1C2=O predicted: ['CCN'] gtruth: ['c1ccncc1'] 
+C(#CC1c2ccccc2C=Cc2ccccc21)COC1CCCCO1>>OCC#CC1c2ccccc2C=Cc2ccccc21 predicted: ['O=C1C(Cl)=C(Cl)C(=O)C(Cl)=C1Cl'] gtruth: ['Cl'] 
+CN1CCC2(CC1)NCCO2>>CC(=O)c1ccc(S(=O)(=O)N2CCOC23CCN(C)CC3)cc1 predicted: ['CS(=O)(=O)OS(C)(=O)=O'] gtruth: ['c1ccncc1'] 
+COCCN1C(=O)CCC(N2C(=O)c3cccc(N)c3C2=O)C1=O.CC(=O)OC(C)=O>>COCCN1C(=O)CCC(N2C(=O)c3cccc(NC(C)=O)c3C2=O)C1=O predicted: ['CNN'] gtruth: ['CN(C)c1ccncc1'] 
+O=[N+]([O-])c1cc(F)ccc1N1CCCCC1>>Nc1cc(F)ccc1N1CCCCC1 predicted: ['CN1CCNCC1'] gtruth: ['Cl'] 
+CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.CCOC(=O)CC[C@H](NC(=O)OC(C)(C)C)C(=O)OC(C)(C)C>>CCOC(=O)CC[C@@H](C(=O)OC(C)(C)C)N(C(=O)OC(C)(C)C)C(=O)OC(C)(C)C predicted: ['CCOC(=O)/N=N/C(=O)OCC'] gtruth: ['CN(C)c1ccncc1'] 
