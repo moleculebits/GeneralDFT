@@ -61,5 +61,5 @@ for i in range(5):
 top_df = pd.concat(topvals, axis=0)
 citop_df = top_df.apply(compute_mean_ci)
 ci_df.loc['top-3'] = citop_df.iloc[1] 
-ci_df.to_csv('./tables/hybridcvsum4000.csv')
-accs.to_csv('./tables/hybridsup4000.csv')
+ci_df.to_csv('./results/hybridcvsum4000.csv')
+accs.to_csv('./results/hybridsup4000.csv')
