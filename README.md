@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 -After that, you can go to Zenodo and download the embeddings. Modify the paths according to where you decided to install the embeddings. 
 
--With that set up, all scripts necessary to reproduce the paper should run smoothly provided you first train/test a model before trying to plot your own results. The bmodel (base model) and crossval scripts should be run as follows:
+-With that set up, all scripts necessary to reproduce the paper should run smoothly provided you first train/test a model before trying to plot your own results. The bmodel.py (base fnn for sample reactions), crossval.py (cross-validation for fnn), and rfcrossval.py (cross-validation for random forests) scripts should be run as follows:
 
 ```
 ./python crossval.py -p "path/to/embeddings/embedding.pt" -s "4000" -t "hybrid"
