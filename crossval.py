@@ -98,19 +98,19 @@ if __name__ == '__main__':
     EPOCHS = 300
 
     #saving model information
-    folder  = './crossval/'
+    folder  = './modelout/outfiles/cvfiles/' #output directory
     EMBPATH        = args.path
-    HRES_OUT       = args.type+f'cvv48-{args.size}.txt'            #test set accuracies
-    TESTLABS       = args.type+f'cvvlabs48-{args.size}.pt'         #test prediction and ground truth labels (redundant to prevent data-loss in case of model corruption)
-    TESTING_OUT    = args.type+f'cvval48-{args.size}.csv'    
-    TRAINING_OUT   = args.type+f'cvtrain48-{args.size}.csv'        #training and validation loss
-    TEST_REACTS    = args.type+f'cvvalreacts48-{args.size}.txt'    #test reaction SMILES + predictions
-    TRAIN_REACTS   = args.type+f'cvtrreacts48-{args.size}.txt'     #train reaction SMILES + predictions
+    HRES_OUT       = args.type+f'cvv48-{args.size}.txt'            #test set accuracies (overview file)
+    TESTLABS       = args.type+f'cvvlabs48-{args.size}.pt'         #test prediction and ground truth labels - IMPORTANT FOR SCORING (this is what you need)
+    TESTING_OUT    = args.type+f'cvval48-{args.size}.csv'          #top-1 and top-3 acc results in csv (redundant)
+    TRAINING_OUT   = args.type+f'cvtrain48-{args.size}.csv'        #training and validation loss in csv (redundant)
+    TEST_REACTS    = args.type+f'cvvalreacts48-{args.size}.txt'    #test reaction SMILES + predictions (large file for debugging and reaction class labelling)
+    TRAIN_REACTS   = args.type+f'cvtrreacts48-{args.size}.txt'     #train reaction SMILES + predictions (very large file for debugging, uncomment code to generate)
     INLAYER        = args.type+f'inlayer48-{args.size}.pt'         #input layer weights
     OUTLAYER       = args.type+f'outlayer48-{args.size}.pt'        #output layer weights
 
-    BEST_STATE     = args.type+f'beststate48-{args.size}.pt'      #best model state 
-    LAST_STATE     = args.type+f'laststate48-{args.size}.pt'      #last model state
+    BEST_STATE     = args.type+f'beststate48-{args.size}.pt'       #best model state 
+    LAST_STATE     = args.type+f'laststate48-{args.size}.pt'       #last model state
 
     trainingset   = dataset.EmbDataset(EMBPATH, VALSIZE, TESTSIZE, train=True, test=True)
     validationset = dataset.EmbDataset(EMBPATH, VALSIZE, TESTSIZE, train=False, test=False)
@@ -225,8 +225,8 @@ if __name__ == '__main__':
             trout.write(foldstring)
         with open(os.path.join(folder, TEST_REACTS),'a') as fout:
             fout.write(foldstring)
-        with open(os.path.join(folder, TRAIN_REACTS), 'a') as rxnout:
-            rxnout.write(foldstring)
+      #  with open(os.path.join(folder, TRAIN_REACTS), 'a') as rxnout: uncomment for more debug info (10-12gb)
+      #      rxnout.write(foldstring)
 
         best_vloss = 1e6
         for epoch in range(EPOCHS):
