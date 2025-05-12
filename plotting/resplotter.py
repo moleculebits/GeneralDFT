@@ -1,3 +1,6 @@
+#this file containes plotting utilities to reproduce all figures in Results and Discussion along with
+#the class distribution plots
+
 import os
 import pandas as pd
 import numpy as np
