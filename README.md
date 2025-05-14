@@ -34,12 +34,12 @@ pip install -r requirements.txt
 
 # Plotting
 
--In case you simply want to reproduce the main figures included in the paper, you can simply run the python script included in the plotting directory, which makes use of the files under "results" to reproduce the figures. Notice that the "results" directory only contains data immediately relevant to the plots, whereas the rest of the obtained performance metrics were added directly to the paper's Supporting Information.
+-In case you want to reproduce the main figures included in the paper, you can simply run the python script included in the plotting directory, which makes use of the files under "results" to reproduce the figures. Notice that the "results" directory only contains data immediately relevant to the plots, whereas the rest of the obtained performance metrics were added directly to the paper's Supporting Information.
 
 # Embedding Generation
 
--The embedding generation process is complex and includes hardware-specific steps performed on a high-performance computing cluster, as such, the entire process could not be included in this repository. Nevertheless, we aimed to provide enough support to allow you to generate your own new embeddings and generate the ones used in our paper. The "embgen" directory contains specific instructions to generate new embeddings.
+-The embedding generation process is complex and includes hardware-specific steps performed on a high-performance computing cluster, as such, the entire process could not be included in this repository. Nevertheless, we aimed to provide enough support to allow you to generate your own new embeddings and generate the ones used in our paper. The "embgen" is a work-in-progress and includes sanitized code from our workflow that has been modified to remove system information and private third-party code.
 
 # Replicating the DFT computations
 
--The directory "dftsample" includes the ORCA and NBO versions used in the paper and describes the commands used for the computations
+-The directory "dftsample" includes the ORCA and NBO versions used in the paper and describes the commands used for the computations. All you need to run your jobs exactly like us is to use the same version and add the same ORCA keywords to your scripts.
