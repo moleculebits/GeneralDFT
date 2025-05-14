@@ -18,7 +18,7 @@ reactant_dic = torch.load('./dicts/reactant_graph_dic.pt')
 agent_dic = torch.load('./dicts/agent_graph_dic.pt')
 solvent_dic = torch.load('./dicts/solvent_graph_dic.pt')
 
-with open('red_smiles_dic', 'r') as fin:
+with open('red_smiles_dic.json', 'r') as fin:
     sdic = json.load(fin)
 
 gl2inputdic = torch.load('gl2inputdic500.pt') #loads gl2vec embeddings

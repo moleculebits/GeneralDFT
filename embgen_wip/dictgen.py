@@ -6,11 +6,11 @@ import orcawrap
 from concurrent.futures import ProcessPoolExecutor
 #storing individual reactions as dicts, not as memory efficient but faster to load and train
 
-PATH_TO_ORCA  = './orcaouts'              #location of orca outputs to be converted to .pt
-CID_FILE      = './dicts/cid_dic'         #with role information and compounds encoded as cid
-SMILES_PATH   = './dicts/red_smiles_dic'  #dictionary for converting between cid and smiles
-DICTS_PATH    = './ptfiles'               #parsed orca files in .pt
-DEST          = './ptout'                 #dest for orca outputs to be converted to .pt
+PATH_TO_ORCA  = './orcaouts'                   #location of orca outputs to be converted to .pt
+CID_FILE      = './dicts/cid_dic.json'         #with role information and compounds encoded as cid
+SMILES_PATH   = './dicts/red_smiles_dic.json'  #dictionary for converting between cid and smiles
+DICTS_PATH    = './ptfiles'                    #parsed orca files in .pt
+DEST          = './ptout'                      #dest for orca outputs to be converted to .pt
 
 NUM_PROCS = 0 #adjust according to your system
 
