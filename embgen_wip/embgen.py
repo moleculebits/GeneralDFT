@@ -44,11 +44,7 @@ molvals = df['mol2vec'].to_list()
 molkeys = df.index.to_list()
 mol2vecdic = {molkey: molval for molkey, molval in zip(molkeys, molvals)}
 
-mollist = []
-mollist.extend(torch.load('molgraphs0.pt'))
-mollist.extend(torch.load('molgraphs1.pt'))
-mollist.extend(torch.load('molgraphs2.pt'))
-mollist.extend(torch.load('molgraphs3.pt'))
+mollist = torch.load('role_list.pt')
 
 mol2input   = []
 gl2input    = []
