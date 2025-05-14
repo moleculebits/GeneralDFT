@@ -1,7 +1,8 @@
 #notice that the version of PyTorch you should install depends on the GPU you're using. We tested the modules and scripts in python 3.9
---extra-index-url https://download.pytorch.org/whl/cu124
-pandas==2.0.1
+--extra-index-url https://download.pytorch.org/whl/cu117
 matplotlib==3.9.2
-numpy==2.0.2
+numpy==1.26.4
+pandas==2.0.1
 scikit-learn==1.2.2
 torch==2.0.0+cu117
+scikit-learn-intelex==2025.2.0
