@@ -38,7 +38,9 @@ pip install -r requirements.txt
 
 # Embedding Generation
 
--The embedding generation process is complex and includes hardware-specific steps performed on a high-performance computing cluster, as such, the entire process could not be included in this repository. Nevertheless, we aimed to provide enough support to allow you to generate your own new embeddings and generate the ones used in our paper. The "embgen" is a work-in-progress and includes sanitized code from our workflow that has been modified to remove system information and private third-party code.
+-The embedding generation process is complex and includes hardware-specific steps performed on a high-performance computing cluster, as such, the entire process could not be included in this repository. Nevertheless, we aimed to provide enough support to allow you to generate your own new embeddings and generate the ones used in our paper. The "embgen" directory is a work-in-progress and includes sanitized code from our workflow that has been modified to remove system information and private third-party code. IT IS NOT NEEDED TO REPLICATE OUR RESULTS.
+
+-For now, we strongly suggest you replicate our results directly from the embeddings we provided on Zeonodo and the fnn/rf scripts at the root of the repo and utils/parsing utilities we provide.
 
 # Replicating the DFT computations
 
