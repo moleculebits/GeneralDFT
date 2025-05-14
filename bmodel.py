@@ -65,12 +65,6 @@ class BNET(torch.nn.Module):
         #feed forward for class prediction
         x = self.fnn(x)
         return x
-    
-def weight_reset(m):
-    reset_parameters = getattr(m, "reset_parameters", None)
-    if callable(reset_parameters):
-        m.reset_parameters()
-
 
 def top_correct(labels, predicted, k):
     _, topk   = torch.topk(predicted, k, 1)
