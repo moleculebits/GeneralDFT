@@ -43,8 +43,8 @@ rf_scores    = pd.read_csv(os.path.join(PATH,'rf_scores.csv')) #metrics summary 
 rf_ci  = pd.read_csv(os.path.join(PATH,'rf_ci.csv'))
 rfclass = format_sumframe(pd.read_csv(os.path.join(PATH,'struct500treessum2400.csv'), index_col=0))[0]
 
-fnn_scores    = pd.read_csv(PATH+'fnn_scores.csv') #metrics summary for all fnn models
-fnn_ci  = pd.read_csv(PATH+'fnn_ci.csv')
+fnn_scores    = pd.read_csv(os.path.join(PATH, 'fnn_scores.csv')) #metrics summary for all fnn models
+fnn_ci  = pd.read_csv(os.path.join(PATH, 'fnn_ci.csv'))
 fnnclass, classmacro = format_sumframe(pd.read_csv(os.path.join(PATH,'hybridcvsum4000.csv'), index_col=0))
 
 #reads frames for the per reaction class results
@@ -136,7 +136,7 @@ axes2.spines['top'].set_visible(False)
 
 fig3, axes3 = plt.subplots()
 rxnsupport = fnnrxn.sort_values(by='total_samples', ascending=True)
-rxnsupport['total_samples'].plot.barh(ax=axes3, width=0.9, color='tab:brown')
+rxnsupport['total_samples'].plot.barh(ax=axes3, width=0.9, color='tab:red')
 axes3.set_ylabel('')
 axes3.set_xlabel('Reaction count', fontsize=6)
 axes3.tick_params(axis='both', labelsize=6)
@@ -155,10 +155,9 @@ y = fnnrxn['accuracy']
 pdtinrxns = ( fnnrxn.loc['Sonogashira reaction', 'total_samples'] +  fnnrxn.loc['Suzuki coupling', 'total_samples'] +  
          fnnrxn.loc['Heck reaction', 'total_samples']  +  fnnrxn.loc['Palladium catalyzed reaction', 'total_samples'] +  
          fnnrxn.loc['Stille reaction', 'total_samples'])
-print(pdtinrxns)
 
 orgmetrxns = fnnrxn.loc['Other Organometallic C-C bond formation']['total_samples']
-
+#print(pdtinrxns)
 
 axes4[0].scatter(x, y*100, color='tab:red', s=15)
 axes4[0].set_ylabel('Accuracy')
