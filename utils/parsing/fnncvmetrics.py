@@ -8,7 +8,7 @@ import pandas as pd
 
 from sklearn.metrics import classification_report
  
-DIR_PATH = './modelout/' #path to the model output
+DIR_PATH = './fnnmodelout/' #path to the model output
 
 #please change the output directories as needed!
 
@@ -26,7 +26,7 @@ reports = {}
 dfs     = []
 accs    = []
 for i in range(5):
-    classes, truelabs, predlabs = torch.load(DIR_PATH+f'f{i}hybridcvvlabs48-4000.pt')
+    classes, truelabs, predlabs = torch.load(DIR_PATH+f'f{i}hybridcvvlabs48-4000.pt') #change as needed
     report = classification_report(truelabs, predlabs, labels=classes, output_dict=True, digits=6)
     report = pd.DataFrame(report).transpose()
     newdf = report[['support', 'precision']].copy()
@@ -54,12 +54,12 @@ ci_df['total_samples'] = supports
 
 topvals = []
 for i in range(5):
-    loss  = pd.read_csv(DIR_PATH+f'f{i}hybridcvtrain48-4000.csv', delimiter= ',', header=None)
-    report = pd.read_csv(DIR_PATH+f'f{i}hybridcvval48-4000.csv', delimiter= ',', header=None)
+    loss  = pd.read_csv(DIR_PATH+f'f{i}hybridcvtrain48-4000.csv', delimiter= ',', header=None) #change as needed
+    report = pd.read_csv(DIR_PATH+f'f{i}hybridcvval48-4000.csv', delimiter= ',', header=None) #change as needed
     report.columns = ['top-1', 'top-3']
     topvals.append(report[loss[1]==loss[1].min()])
 top_df = pd.concat(topvals, axis=0)
 citop_df = top_df.apply(compute_mean_ci)
 ci_df.loc['top-3'] = citop_df.iloc[1] 
-ci_df.to_csv('./results/hybridcvsum4000.csv')
-accs.to_csv('./results/hybridsup4000.csv')
+ci_df.to_csv('./results/hybridcvsum4000.csv') #change as needed
+accs.to_csv('./results/hybridsup4000.csv')  #change as needed

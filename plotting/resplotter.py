@@ -1,5 +1,5 @@
 #this file containes plotting utilities to reproduce all figures in Results and Discussion along with
-#the class distribution plots
+#the class distribution plots. You can just run the script directly to generate the figures
 
 import os
 import pandas as pd
