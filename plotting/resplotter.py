@@ -141,10 +141,10 @@ axes3.set_ylabel('')
 axes3.set_xlabel('Reaction count', fontsize=6)
 axes3.tick_params(axis='both', labelsize=6)
 axes3.set_xscale('log')
+axes3.set_xlim((0, 1e5))
 axes3.spines['right'].set_visible(False)
 axes3.spines['top'].set_visible(False)
 fig3.tight_layout()
-
 
 
 fig4, axes4 = plt.subplots(nrows=1, ncols=2, sharex=True, sharey=True)
