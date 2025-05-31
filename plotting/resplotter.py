@@ -136,7 +136,7 @@ axes2.spines['top'].set_visible(False)
 
 fig3, axes3 = plt.subplots()
 rxnsupport = fnnrxn.sort_values(by='total_samples', ascending=True)
-rxnsupport['total_samples'].plot.barh(ax=axes3, width=0.9, color='tab:red')
+rxnsupport['total_samples'].plot.barh(ax=axes3, width=0.85, color='tab:red')
 axes3.set_ylabel('')
 axes3.set_xlabel('Reaction count', fontsize=6)
 axes3.tick_params(axis='both', labelsize=6)
