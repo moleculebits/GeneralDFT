@@ -4,6 +4,6 @@
  
 -All other files included are actual model outputs. The file was truncated due to its large size. "cvvalreacts" files should NOT be opened using a text editor, rather they are used for debugging and labeling reactions through the cvvalsplit.py script provided under ./utils. 
 
--When reproducing the primary results of the paper (from your own model outputs), only "cvvlabs.pt", "cvtrain.xlsx" and "hybridcvval.xlsx" files are required. "cvvalreacts" files are only needed to label reactions (with reaction classes) if you wish to do so. They are not required to plot any of the figures.
+-When reproducing the primary results of the paper (from your own model outputs), only "cvvlabs.pt", "cvtrain.csv" and "hybridcvval.csv" files are required. "cvvalreacts" files are only needed to label reactions (with reaction classes) if you wish to do so. They are not required to plot any of the figures.
 
--To reproduce additional results and the performance summary included in the Supporting Information, you can parse the "cvvlabs.pt", "cvtrain.xlsx" (or .csv) and "hybridcvval.xlsx" files, using the ./utils/parsing/cvmetrics.py script.
+-To reproduce additional results and the performance summary included in the Supporting Information, you can parse the "cvvlabs.pt", "cvtrain.csv" and "hybridcvval.csv" files, using the ./utils/parsing/cvmetrics.py script.
