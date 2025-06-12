@@ -90,8 +90,8 @@ def top_correct(labels, predicted, k):
 
 if __name__ == '__main__':
 
-    VALSIZE   = 6000
-    TESTSIZE  = 6000
+    VALSIZE   = 6000 #any reasonable val works here (kept for simplicity, not used for CV)
+    TESTSIZE  = 6000 #any reasonable val works here
     BATCHSIZE = 48
 
     LR = 0.001
