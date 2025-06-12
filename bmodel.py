@@ -87,7 +87,7 @@ if __name__ == '__main__':
     BATCHSIZE = 48
 
     LR = 0.001
-    EPOCHS = 300
+    EPOCHS = 350
 
     #saving model information
     folder  = './modelout/'
